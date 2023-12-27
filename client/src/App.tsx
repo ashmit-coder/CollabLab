@@ -1,6 +1,7 @@
 import Keycloak from "keycloak-js";
-import {FabricJSCanvas, useFabricJSEditor} from"fabricjs-react";
 import "./App.css"
+import ToolArray from "./components/ToolArray";
+
 const keycloak = new Keycloak(
   {
   url: "http://localhost:8180",
@@ -14,12 +15,11 @@ keycloak.init({onLoad:"login-required"})
 
 function App() {
 
-  const {onReady,editor} = useFabricJSEditor()
-  editor?.addCircle();
-    
- 
   return (
-      <FabricJSCanvas onReady={onReady} className="Main-canvas"/>
+    <div>
+    <ToolArray />
+    <canvas id="Main-canvas"/>
+    </div>
     )
   
 }
