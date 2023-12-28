@@ -27,6 +27,7 @@ export default function ToolArray() {
   }, []);
 
   function addRect() {
+    editor.isDrawingMode = false;
     var rect = new fabric.Rect({
       stroke: "black",
       strokeWidth: 2,
@@ -41,6 +42,8 @@ export default function ToolArray() {
   }
 
   function addCircle() {
+    editor.isDrawingMode = false;
+
     var cir = new fabric.Circle({
       stroke: "black",
       strokeWidth: 2,
@@ -53,6 +56,8 @@ export default function ToolArray() {
   }
 
   function addTriangle() {
+    editor.isDrawingMode = false;
+
     var triangle = new fabric.Triangle({
       stroke: "black",
       strokeWidth: 2,
@@ -66,12 +71,16 @@ export default function ToolArray() {
   }
 
   function addText() {
+    editor.isDrawingMode = false;
+
     var text = new fabric.Textbox("TEXT");
     editor.add(text);
     setEditor(editor);
   }
 
   function deleteSelection() {
+    editor.isDrawingMode = false;
+
     let lst = editor.getActiveObjects();
 
     lst.forEach((element) => {
@@ -119,6 +128,9 @@ export default function ToolArray() {
 
     if (size && mode.current) {
       editor.freeDrawingBrush.width = parseInt(size);
+      if (parseInt(size) == 0) {
+        editor.freeDrawingBrush.width = 1;
+      }
     }
   }
 

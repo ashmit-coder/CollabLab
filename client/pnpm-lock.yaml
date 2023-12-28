@@ -52,6 +52,9 @@ devDependencies:
   eslint-plugin-react-refresh:
     specifier: ^0.4.5
     version: 0.4.5(eslint@8.56.0)
+  prettier:
+    specifier: ^3.1.1
+    version: 3.1.1
   typescript:
     specifier: ^5.2.2
     version: 5.3.3
@@ -3025,6 +3028,15 @@ packages:
         integrity: sha512-vkcDPrRZo1QZLbn5RLGPpg/WmIQ65qoWWhcGKf/b5eplkkarX0m9z8ppCat4mlOqUsWpyNuYgO3VRyrYHSzX5g==,
       }
     engines: { node: ">= 0.8.0" }
+    dev: true
+
+  /prettier@3.1.1:
+    resolution:
+      {
+        integrity: sha512-22UbSzg8luF4UuZtzgiUOfcGM8s4tjBv6dJRT7j275NXsy2jb4aJa4NNveul5x4eqlF1wuhuR2RElK71RvmVaw==,
+      }
+    engines: { node: ">=14" }
+    hasBin: true
     dev: true
 
   /psl@1.9.0:
