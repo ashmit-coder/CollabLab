@@ -2,3 +2,27 @@
   display: flex;
   gap: 10px;
 }
+
+html {
+  background-color: rgb(32, 62, 97);
+  overflow: hidden;
+}
+
+#Main-canvas {
+  background-color: white;
+}
+#Main {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+  padding: 1%;
+  align-items: center;
+}
+
+#Brush-size {
+  accent-color: black;
+}
+
+#Brush-color{
+  margin-top: 6px;
+}

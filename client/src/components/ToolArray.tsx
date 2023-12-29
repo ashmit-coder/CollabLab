@@ -1,159 +1,69 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef} from "react";
 import "../App.css";
 import { fabric } from "fabric";
+import {
+  addCircle,
+  addRect,
+  addText,
+  addTriangle,
+  changeBrushColor,
+  changeBrushSize,
+  deleteAll,
+  deleteSelection,
+  drawingMode,
+} from "./Functions";
 
 // https://alexsidorenko.com/blog/react-list-rerender/
 
 export default function ToolArray() {
-  // let editor = new fabric.Canvas("Main-canvas");
-  const [editor, setEditor] = useState(new fabric.Canvas("Main-canvas"));
-  // let msg = useRef("Drawing Mode");
-  const [msg, setMsg] = useState("Drawing Mode");
+  let editor = new fabric.Canvas("Main-canvas");
   let mode = useRef(false);
 
   useEffect(() => {
-    // editor = new fabric.Canvas("Main-canvas", {
-    //     height: 3000,
-    //     width: 3000,
-
-    // })
-
-    setEditor(
-      new fabric.Canvas("Main-canvas", {
-        height: 3000,
-        width: 3000,
-      }),
-    );
+    editor = new fabric.Canvas("Main-canvas", {
+      height: 700,
+      width: 1250,
+    });
   }, []);
 
-  function addRect() {
-    editor.isDrawingMode = false;
-    var rect = new fabric.Rect({
-      stroke: "black",
-      strokeWidth: 2,
-      width: 100,
-      height: 100,
-      fill: "white",
-      selectable: true,
-    });
-
-    editor.add(rect);
-    setEditor(editor);
-  }
-
-  function addCircle() {
-    editor.isDrawingMode = false;
-
-    var cir = new fabric.Circle({
-      stroke: "black",
-      strokeWidth: 2,
-      radius: 100,
-      fill: "white",
-    });
-
-    editor.add(cir);
-    setEditor(editor);
-  }
-
-  function addTriangle() {
-    editor.isDrawingMode = false;
-
-    var triangle = new fabric.Triangle({
-      stroke: "black",
-      strokeWidth: 2,
-      fill: "white",
-      width: 100,
-      height: 100,
-    });
-
-    editor.add(triangle);
-    setEditor(editor);
-  }
-
-  function addText() {
-    editor.isDrawingMode = false;
-
-    var text = new fabric.Textbox("TEXT");
-    editor.add(text);
-    setEditor(editor);
-  }
-
-  function deleteSelection() {
-    editor.isDrawingMode = false;
-
-    let lst = editor.getActiveObjects();
-
-    lst.forEach((element) => {
-      editor.remove(element);
-    });
-    setEditor(editor);
-  }
-
-  function deleteAll() {
-    editor.getObjects().forEach((element) => {
-      editor.remove(element);
-    });
-    setEditor(editor);
-  }
-
-  function drawingMode() {
-    if (!mode.current) {
-      mode.current = true;
-      setEditor(editor);
-      editor.isDrawingMode = mode.current;
-      // msg.current = "Exit drawing mode";
-      setEditor(editor);
-      setMsg("Exit drawing mode");
-    } else {
-      mode.current = false;
-      setEditor(editor);
-      editor.isDrawingMode = mode.current;
-      // msg.current = "Drawing Mode";
-      setEditor(editor);
-      setMsg("Drawing Mode");
-    }
-  }
-
-  function changeBrushColor() {
-    let color = (document.getElementById("Brush-color") as HTMLInputElement)
-      .value;
-    if (color && mode.current) {
-      editor.freeDrawingBrush.color = color;
-    }
-  }
-
-  function changeBrushSize() {
-    let size = (document.getElementById("Brush-size") as HTMLInputElement)
-      .value;
-
-    if (size && mode.current) {
-      editor.freeDrawingBrush.width = parseInt(size);
-      if (parseInt(size) == 0) {
-        editor.freeDrawingBrush.width = 1;
-      }
-    }
-  }
 
   return (
     <div className="ToolArray">
-      <button onClick={addRect}>Add Square</button>
-      <button onClick={addCircle}>Add Circle</button>
-      <button onClick={addTriangle}>Add Triangle</button>
-      <button onClick={addText}>Add Textbox</button>
-      <button onClick={deleteSelection}>Delete</button>
-      <button onClick={deleteAll}>Delete All</button>
-      <button onClick={drawingMode}>{msg}</button>
+      <button onClick={(_e: never) => addRect({ editor })}>
+        <img src="/check-box.png" width={30}/>
+        </button>
+      <button onClick={(_e: never) => addCircle({ editor })}>
+      <img src="/circle.png" width={30}/>
+      </button>
+      <button onClick={(_e: never) => addTriangle({ editor })}>
+      <img src="/triangle.png" width={30}/>
+      </button>
+      <button onClick={(_e: never) => addText({ editor })}>
+      <img src="/text-box.png" width={30}/>
+
+      </button>
+      <button onClick={(_e: never) => deleteSelection({ editor })}>
+      <img src="/trash-bin.png" width={30}/>
+      </button>
+      <button onClick={(_e: never) => deleteAll({ editor })}>
+      <img src="/clean.png" width={30}/>
+      </button>
+      <button onClick={(_e: never) => drawingMode(editor, mode)}>
+      <img src="/pen.png" width={30}/>
+        
+      </button> 
       <input
         type="color"
         name="Brush-color"
         id="Brush-color"
-        onChange={changeBrushColor}
+        onChange={(_e: never) => changeBrushColor(editor, mode)}
       />
       <input
         type="range"
         name="Brush-size"
         id="Brush-size"
-        onChange={changeBrushSize}
+        color="black"
+        onChange={(_e: never) => changeBrushSize(editor, mode)}
       />
     </div>
   );

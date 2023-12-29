@@ -12,10 +12,11 @@ keycloak.init({ onLoad: "login-required" });
 
 function App() {
   return (
-    <div>
+    <div id="Main">
       <ToolArray />
+      
       <canvas id="Main-canvas" />
-    </div>
+     </div>
   );
 }
 
