@@ -2,6 +2,7 @@ import Keycloak from "keycloak-js";
 import "./App.css";
 import { createBrowserRouter, RouterProvider } from "react-router-dom"
 import Whiteboard from "./pages/Whiteboard";
+import Navbar from "./components/Navbar";
 
 const keycloak = new Keycloak({
   url: "http://localhost:8180",
@@ -17,8 +18,8 @@ const router = createBrowserRouter([{
   errorElement:<div id="error">PAGE NOT FOUND, 404</div>
 },
 {
-  path: "/",
-  element:<div>HI This is home page</div>
+  path: "/navbar",
+  element:<Navbar/>
 }
 ])
 
