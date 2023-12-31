@@ -1,6 +1,7 @@
 import Keycloak from "keycloak-js";
 import "./App.css";
-import ToolArray from "./components/ToolArray";
+import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import Whiteboard from "./pages/Whiteboard";
 
 const keycloak = new Keycloak({
   url: "http://localhost:8180",
@@ -8,16 +9,19 @@ const keycloak = new Keycloak({
   clientId: "ashmit",
 });
 
+const router = createBrowserRouter([{
+  path: "/whiteboard",
+  element:<Whiteboard/>
+
+},{
+  errorElement:<div id="error">PAGE NOT FOUND, 404</div>
+}
+])
+
 keycloak.init({ onLoad: "login-required" });
 
 function App() {
-  return (
-    <div id="Main">
-      <ToolArray />
-      
-      <canvas id="Main-canvas" />
-     </div>
-  );
+    return(<RouterProvider router={router} />)
 }
 
 export default App;

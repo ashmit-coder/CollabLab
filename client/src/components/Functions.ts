@@ -4,7 +4,7 @@ import React from "react";
 export function addRect(props: { editor: fabric.Canvas }) {
   const { editor } = props;
   editor.isDrawingMode = false;
-  var rect = new fabric.Rect({
+  const rect = new fabric.Rect({
     stroke: "black",
     strokeWidth: 2,
     width: 100,
@@ -20,7 +20,7 @@ export function addCircle(props: { editor: fabric.Canvas }) {
   const { editor } = props;
 
   editor.isDrawingMode = false;
-  var cir = new fabric.Circle({
+  const cir = new fabric.Circle({
     stroke: "black",
     strokeWidth: 2,
     radius: 50,
@@ -36,7 +36,7 @@ export function addTriangle(props: { editor: fabric.Canvas }) {
 
   editor.isDrawingMode = false;
 
-  var triangle = new fabric.Triangle({
+  const triangle = new fabric.Triangle({
     stroke: "black",
     strokeWidth: 2,
     fill: "white",
@@ -53,7 +53,7 @@ export function addText(props: { editor: fabric.Canvas }) {
 
   editor.isDrawingMode = false;
 
-  var text = new fabric.Textbox("TEXT");
+  const text = new fabric.Textbox("TEXT");
   editor.add(text);
 
 }
@@ -98,7 +98,7 @@ export function changeBrushColor(
   editor: fabric.Canvas,
   mode: React.MutableRefObject<boolean>,
 ) {
-  let color = (document.getElementById("Brush-color") as HTMLInputElement)
+  const color = (document.getElementById("Brush-color") as HTMLInputElement)
     .value;
   if (color && mode.current) {
     editor.freeDrawingBrush.color = color;
@@ -110,7 +110,7 @@ export function changeBrushSize(
   editor: fabric.Canvas,
   mode: React.MutableRefObject<boolean>,
 ) {
-  let size = (document.getElementById("Brush-size") as HTMLInputElement).value;
+  const size = (document.getElementById("Brush-size") as HTMLInputElement).value;
 
   if (size && mode.current) {
     editor.freeDrawingBrush.width = parseInt(size);

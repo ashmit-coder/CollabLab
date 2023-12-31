@@ -17,7 +17,7 @@ import {
 
 export default function ToolArray() {
   let editor = new fabric.Canvas("Main-canvas");
-  let mode = useRef(false);
+  const mode = useRef(false);
 
   useEffect(() => {
     editor = new fabric.Canvas("Main-canvas", {
