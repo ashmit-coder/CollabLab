@@ -1,8 +1,8 @@
 import Keycloak from "keycloak-js";
 import "./App.css";
-import { createBrowserRouter, RouterProvider } from "react-router-dom"
+import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Whiteboard from "./pages/Whiteboard";
-import Navbar from "./components/Navbar";
+import LandingPage from "./pages/LandingPage";
 
 const keycloak = new Keycloak({
   url: "http://localhost:8180",
@@ -10,23 +10,27 @@ const keycloak = new Keycloak({
   clientId: "ashmit",
 });
 
-const router = createBrowserRouter([{
-  path: "/whiteboard",
-  element:<Whiteboard/>
+const router = createBrowserRouter([
+  {
+    errorElement: <div id="error">PAGE NOT FOUND, 404</div>,
+  },
+  {
+    path: "/whiteboard",
+    element: <Whiteboard />,
+  },
+  {
+    path: "/",
+    element: <LandingPage />,
+  },
+]);
 
-},{
-  errorElement:<div id="error">PAGE NOT FOUND, 404</div>
-},
-{
-  path: "/navbar",
-  element:<Navbar/>
-}
-])
-
-keycloak.init({ onLoad: "login-required" });
+const user = keycloak.init({ onLoad: "login-required" });
 
 function App() {
-    return(<RouterProvider router={router} />)
+  user.then((_data) => {
+    console.log(JSON.parse(JSON.stringify(keycloak.idTokenParsed)));
+  });
+  return <RouterProvider router={router} />;
 }
 
 export default App;

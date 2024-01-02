@@ -14,7 +14,7 @@ html {
 #Main {
   display: flex;
   flex-direction: column;
-  gap: 30px;
+  gap: 20px;
   padding: 1%;
   align-items: center;
 }
@@ -23,6 +23,19 @@ html {
   accent-color: black;
 }
 
-#Brush-color{
+#Brush-color {
   margin-top: 6px;
+}
+
+#Navbar {
+  display: flex;
+  justify-content: space-between;
+  padding-left: 10px;
+  padding-right: 10px;
+  color: white;
+}
+
+a {
+  color: white;
+  text-decoration: none;
 }

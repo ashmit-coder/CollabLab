@@ -1,9 +1,9 @@
 import { fabric } from "fabric";
-import React from "react";
+import React, { MutableRefObject } from "react";
 
-export function addRect(props: { editor: fabric.Canvas }) {
+export function addRect(props: { editor: MutableRefObject<fabric.Canvas> }) {
   const { editor } = props;
-  editor.isDrawingMode = false;
+  editor.current.isDrawingMode = false;
   const rect = new fabric.Rect({
     stroke: "black",
     strokeWidth: 2,
@@ -13,13 +13,13 @@ export function addRect(props: { editor: fabric.Canvas }) {
     selectable: true,
   });
 
-  editor.add(rect);
+  editor.current.add(rect);
 }
 
-export function addCircle(props: { editor: fabric.Canvas }) {
+export function addCircle(props: { editor: MutableRefObject<fabric.Canvas> }) {
   const { editor } = props;
 
-  editor.isDrawingMode = false;
+  editor.current.isDrawingMode = false;
   const cir = new fabric.Circle({
     stroke: "black",
     strokeWidth: 2,
@@ -27,14 +27,15 @@ export function addCircle(props: { editor: fabric.Canvas }) {
     fill: "white",
   });
 
-  editor.add(cir);
-
+  editor.current.add(cir);
 }
 
-export function addTriangle(props: { editor: fabric.Canvas }) {
+export function addTriangle(props: {
+  editor: MutableRefObject<fabric.Canvas>;
+}) {
   const { editor } = props;
 
-  editor.isDrawingMode = false;
+  editor.current.isDrawingMode = false;
 
   const triangle = new fabric.Triangle({
     stroke: "black",
@@ -44,79 +45,72 @@ export function addTriangle(props: { editor: fabric.Canvas }) {
     height: 100,
   });
 
-  editor.add(triangle);
-
+  editor.current.add(triangle);
 }
 
-export function addText(props: { editor: fabric.Canvas }) {
+export function addText(props: { editor: MutableRefObject<fabric.Canvas> }) {
   const { editor } = props;
 
-  editor.isDrawingMode = false;
+  editor.current.isDrawingMode = false;
 
   const text = new fabric.Textbox("TEXT");
-  editor.add(text);
-
+  editor.current.add(text);
 }
 
-export function deleteSelection(props: { editor: fabric.Canvas }) {
+export function deleteSelection(props: {
+  editor: MutableRefObject<fabric.Canvas>;
+}) {
   const { editor } = props;
 
-  editor.isDrawingMode = false;
-  editor.getActiveObjects().forEach((element) => {
-    editor.remove(element);
+  editor.current.isDrawingMode = false;
+  editor.current.getActiveObjects().forEach((element) => {
+    editor.current.remove(element);
   });
-
 }
 
-export function deleteAll(props: { editor: fabric.Canvas }) {
+export function deleteAll(props: { editor: MutableRefObject<fabric.Canvas> }) {
   const { editor } = props;
 
-  editor.getObjects().forEach((element) => {
-    editor.remove(element);
+  editor.current.getObjects().forEach((element) => {
+    editor.current.remove(element);
   });
-
 }
 
 export function drawingMode(
-  editor: fabric.Canvas,
+  editor: MutableRefObject<fabric.Canvas>,
   mode: React.MutableRefObject<boolean>,
-  
 ) {
   if (!mode.current) {
     mode.current = true;
-    editor.isDrawingMode = mode.current;
-  
+    editor.current.isDrawingMode = mode.current;
   } else {
     mode.current = false;
-    editor.isDrawingMode = mode.current;
-
+    editor.current.isDrawingMode = mode.current;
   }
-
 }
 
 export function changeBrushColor(
-  editor: fabric.Canvas,
+  editor: MutableRefObject<fabric.Canvas>,
   mode: React.MutableRefObject<boolean>,
 ) {
   const color = (document.getElementById("Brush-color") as HTMLInputElement)
     .value;
   if (color && mode.current) {
-    editor.freeDrawingBrush.color = color;
+    editor.current.freeDrawingBrush.color = color;
   }
-
 }
 
 export function changeBrushSize(
-  editor: fabric.Canvas,
+  editor: MutableRefObject<fabric.Canvas>,
   mode: React.MutableRefObject<boolean>,
 ) {
-  const size = (document.getElementById("Brush-size") as HTMLInputElement).value;
+  const size = (document.getElementById("Brush-size") as HTMLInputElement)
+    .value;
 
   if (size && mode.current) {
-    editor.freeDrawingBrush.width = parseInt(size);
+    editor.current.freeDrawingBrush.width = parseInt(size);
     if (parseInt(size) == 0) {
-      editor.freeDrawingBrush.width = 1;
+      editor.current.freeDrawingBrush.width = 1;
     }
   }
-
 }
