@@ -24,6 +24,15 @@ jobs:
         with:
           node-version: 18
 
+      - name: Setting up pnpm
+        working-directory: ./client
+        uses: pnpm/action-setup@v2
+          with:
+            version: 8
+            run_install: |
+              - recursive: true
+                args: [--frozen-lockfile, --strict-peer-dependencies]
+              - args: [--global, gulp, prettier, typescript]
       # ESLint and Prettier must be in `package.json`
       - name: Install Node.js dependencies
         working-directory: ./client
