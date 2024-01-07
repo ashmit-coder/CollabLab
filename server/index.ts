@@ -7,7 +7,6 @@ const upload = multer();
 import path from 'path';
 import dotenv from 'dotenv';
 dotenv.config({path:path.join(__dirname, "./.env")});
-const PORT = process.env.PORT || 5000;
 import apiRoutes from "./routes/api.routes";
 
 app.use(morgan('combined'));
@@ -22,6 +21,4 @@ return res.json({status:true,message:"connection established"});
 });
 
 
-app.listen(PORT,()=>{
-console.log('Listening to port 5000....');
-});
+export default app;

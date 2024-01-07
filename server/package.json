@@ -4,9 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "ts-node-dev --clear index.ts",
+    "dev": "ts-node-dev --clear server.ts",
     "build": "tsc",
-    "start": "node build/index.js",
+    "start": "node build/server.js",
     "migrate:create": "node-pg-migrate create -j sql",
     "migrate:up": "node-pg-migrate up",
     "migrate:down": "node-pg-migrate down",
@@ -23,7 +23,8 @@
     "jsonwebtoken": "^9.0.2",
     "morgan": "^1.10.0",
     "multer": "1.4.5-lts.1",
-    "pg": "^8.11.3"
+    "pg": "^8.11.3",
+    "socket.io": "^4.7.3"
   },
   "devDependencies": {
     "@types/bcrypt": "^5.0.2",
