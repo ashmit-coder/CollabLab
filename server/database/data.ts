@@ -4,11 +4,19 @@ import path from "path";
 dotenv.config({ path: path.resolve(__dirname, "../.env") });
 import { hashSync, genSaltSync, compareSync } from "bcrypt";
 
-const rounds: number = 15;
+const rounds: number = 10;
 
 const pool = new pg.Pool({
     connectionString: process.env.POSTGRES_URL
 });
+
+pool.on("connect",data=>{
+    console.log("Connected to database");
+});
+
+pool.on("release",data=>{
+    console.log("Released database client");
+})
 
 export async function createUser(user: { password: string, name: string, email: string })
     : Promise<boolean> {
@@ -44,11 +52,11 @@ export async function validateUser(user: { password: string, email: string })
         return false;
     }
 
-    
-    const hash = hashSync(user.password, result.rows[0].salt);
+    // const hash = hashSync(user.password, result.rows[0].salt);
     if (compareSync(user.password,result.rows[0].password)) {
         return true;
     }
 
     return false;
 };
+

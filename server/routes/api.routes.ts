@@ -18,6 +18,8 @@ router.post("/login", async (req, res) => {
             "token": token
         });
     }
+
+    return res.status(401).json({"success":false,"message":"Username or password incorrect"});
 });
 
 router.post("/register", async (req, res) => {

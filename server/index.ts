@@ -13,7 +13,7 @@ app.use(morgan('combined'));
 app.use(express.json());
 app.use(express.urlencoded({extended:true}));
 app.use(cors());
-app.use(upload.array("test"));
+app.use(upload.none());
 app.use("/api",apiRoutes);
 
 app.get('/',(_req,res)=>{
