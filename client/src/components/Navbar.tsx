@@ -1,3 +1,5 @@
+import { logout } from "../Controllers/TokenFuncitons";
+
 export default function Navbar(props: { authenticated: boolean }) {
   if (props.authenticated) {
     return (
@@ -6,7 +8,7 @@ export default function Navbar(props: { authenticated: boolean }) {
         <a href="/" className="Links">
           <h3>CollabLab</h3>
         </a>
-        <a href="/" className="Links">
+        <a href="/signin" onClick={logout} className="Links">
           <h3>Logout</h3>
         </a>
       </div>
@@ -20,7 +22,7 @@ export default function Navbar(props: { authenticated: boolean }) {
         <h1>CollabLab</h1>
       </a>
 
-      <a href="/sigin" className="Links">
+      <a href="/signin" className="Links">
         <h3>SignIn</h3>
       </a>
     </div>

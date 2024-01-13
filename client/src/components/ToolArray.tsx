@@ -11,7 +11,7 @@ import {
   deleteAll,
   deleteSelection,
   drawingMode,
-} from "./Functions";
+} from "../Controllers/WhiteBoardFunctions";
 
 // https://alexsidorenko.com/blog/react-list-rerender/
 
