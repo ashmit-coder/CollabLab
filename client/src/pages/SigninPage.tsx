@@ -9,7 +9,7 @@ export default function SigninPage() {
   const navigate = useNavigate();
   useEffect(() => {
     if (isAuthenticated()) {
-      navigate("/whiteboard");
+      navigate("/mainpage");
     }
   }, [navigate]);
 
@@ -29,7 +29,7 @@ export default function SigninPage() {
       .then((data) => {
         const { token } = data.data;
         setToken(token);
-        navigate("/whiteboard");
+        navigate("/mainpage");
       })
       .catch((error) => {
         window.alert(error.response.data.message || "Error in the given data");

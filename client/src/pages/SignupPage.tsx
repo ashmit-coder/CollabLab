@@ -10,7 +10,7 @@ export default function SignupPage() {
 
   useEffect(() => {
     if (isAuthenticated()) {
-      navigate("/whiteboard");
+      navigate("/mainpage");
     }
   }, [navigate]);
 
@@ -46,7 +46,7 @@ export default function SignupPage() {
       .then((user) => {
         const { token } = user.data;
         setToken(token);
-        navigate("/whiteboard");
+        navigate("/mainpage");
       })
       .catch((error) => {
         window.alert(error.response.data.message || "Error in the given data");

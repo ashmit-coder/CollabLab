@@ -4,6 +4,7 @@ import Whiteboard from "./pages/Whiteboard";
 import LandingPage from "./pages/LandingPage";
 import SinginPage from "./pages/SigninPage";
 import SinnupPage from "./pages/SignupPage";
+import MainPage from "./pages/MainPage";
 
 const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ const router = createBrowserRouter([
   {
     path: "/signup",
     element: <SinnupPage />,
+  },
+  {
+    path:"/mainpage",
+    element:<MainPage/>
   },
 ]);
 

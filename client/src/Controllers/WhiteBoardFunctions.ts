@@ -1,5 +1,6 @@
 import { fabric } from "fabric";
 import React, { MutableRefObject } from "react";
+import { socket } from "../Socket";
 
 export function addRect(props: { editor: MutableRefObject<fabric.Canvas> }) {
   const { editor } = props;
@@ -113,4 +114,10 @@ export function changeBrushSize(
       editor.current.freeDrawingBrush.width = 1;
     }
   }
+}
+
+export function exportSVG(editor: MutableRefObject<fabric.Canvas>){
+
+  socket.emit("changes-to-whiteboard",editor.current.toSVG());
+
 }

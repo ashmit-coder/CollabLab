@@ -10,13 +10,6 @@ const pool = new pg.Pool({
     connectionString: process.env.POSTGRES_URL
 });
 
-pool.on("connect",data=>{
-    console.log("Connected to database");
-});
-
-pool.on("release",data=>{
-    console.log("Released database client");
-})
 
 export async function createUser(user: { password: string, name: string, email: string })
     : Promise<boolean> {

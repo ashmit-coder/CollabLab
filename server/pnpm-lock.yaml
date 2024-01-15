@@ -43,6 +43,9 @@ devDependencies:
   '@types/express':
     specifier: ^4.17.21
     version: 4.17.21
+  '@types/fabric':
+    specifier: ^5.3.6
+    version: 5.3.6
   '@types/jsonwebtoken':
     specifier: ^9.0.5
     version: 9.0.5
@@ -172,6 +175,10 @@ packages:
       '@types/express-serve-static-core': 4.17.41
       '@types/qs': 6.9.11
       '@types/serve-static': 1.15.5
+    dev: true
+
+  /@types/fabric@5.3.6:
+    resolution: {integrity: sha512-nTP5I68SsGnanIHxCoBX83ghscw9M9DI27iSDcd0Z+cpiQ5cZByH0nzkm4itDR/LgAy253q7B93xHgyOh2+hFQ==}
     dev: true
 
   /@types/http-errors@2.0.4:

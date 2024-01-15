@@ -5,7 +5,10 @@ export function isAuthenticated(): boolean {
   if (token) {
     const decodedToken = jwtDecode(token);
     if (decodedToken.exp && decodedToken.exp <= Date.now()) return true;
-    else return false;
+    else{
+      logout();
+      return false;
+    }
   } else {
     return false;
   }
