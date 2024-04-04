@@ -36,6 +36,7 @@ export default function ToolArray() {
       width: 1250,
     });
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     editor.current.on("object:added", (data: any) => {
       socket.emit("object:added", data);
     });
@@ -61,6 +62,7 @@ export default function ToolArray() {
           );
         }
       }
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       editor.current.on("object:added", (data: any) => {
         socket.emit("object:added", data);
       });
