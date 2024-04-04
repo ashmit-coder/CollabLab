@@ -27,8 +27,8 @@ const router = createBrowserRouter([
     element: <SinnupPage />,
   },
   {
-    path:"/mainpage",
-    element:<MainPage/>
+    path: "/mainpage",
+    element: <MainPage />,
   },
 ]);
 

@@ -21,7 +21,6 @@ export default function ToolArray() {
   const editor = useRef(new fabric.Canvas("Main-canvas"));
   const mode = useRef(false);
 
-
   // socket.on("changes-to-whiteboard",(svg:string)=>{
 
   //   fabric.loadSVGFromString(svg,(obj)=>{
@@ -37,7 +36,7 @@ export default function ToolArray() {
       width: 1250,
     });
 
-    editor.current.on("object:added", (data:any) => {
+    editor.current.on("object:added", (data: any) => {
       socket.emit("object:added", data);
     });
 
@@ -55,14 +54,17 @@ export default function ToolArray() {
           editor.current.add(new fabric.Triangle(data.target));
         }
         if (data.target.type === "textbox") {
-          editor.current.add(new fabric.Textbox(((data.target as fabric.Textbox).text)as string,{...data.target}));
+          editor.current.add(
+            new fabric.Textbox((data.target as fabric.Textbox).text as string, {
+              ...data.target,
+            }),
+          );
         }
       }
-      editor.current.on("object:added", (data:any) => {
+      editor.current.on("object:added", (data: any) => {
         socket.emit("object:added", data);
-      })
-    }
-    );
+      });
+    });
   }, []);
 
   return (

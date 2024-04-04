@@ -116,8 +116,6 @@ export function changeBrushSize(
   }
 }
 
-export function exportSVG(editor: MutableRefObject<fabric.Canvas>){
-
-  socket.emit("changes-to-whiteboard",editor.current.toSVG());
-
+export function exportSVG(editor: MutableRefObject<fabric.Canvas>) {
+  socket.emit("changes-to-whiteboard", editor.current.toSVG());
 }
