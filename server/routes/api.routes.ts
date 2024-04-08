@@ -10,7 +10,7 @@ router.post("/login", async (req, res) => {
     }
     if(await validateUser(req.body)){
         
-        const token = jwt.sign({ user: email }, (process.env.SECRET_KEY as string), { expiresIn: 60 * 60 })
+        const token = jwt.sign({ user: email }, (process.env.SECRET_KEY as string), { expiresIn: 60 * 60 * 5 })
         
         return res.status(200).json({
             "success": true,
@@ -35,7 +35,7 @@ router.post("/register", async (req, res) => {
 
         if (await createUser({ password, name, email })) {
 
-            const token = jwt.sign({ user: email }, (process.env.SECRET_KEY as string), { expiresIn: 60 * 60 })
+            const token = jwt.sign({ user: email }, (process.env.SECRET_KEY as string), { expiresIn: 60 * 60 * 5 })
 
             return res.status(200).json({
                 "success": true,
