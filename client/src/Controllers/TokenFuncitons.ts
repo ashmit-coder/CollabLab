@@ -4,7 +4,8 @@ export function isAuthenticated(): boolean {
   const token = localStorage.getItem("token");
   if (token) {
     const decodedToken = jwtDecode(token);
-    if (decodedToken.exp && decodedToken.exp <= Date.now()) return true;
+    if (decodedToken.exp && decodedToken.exp >= Math.floor(Date.now() / 1000))
+      return true;
     else {
       logout();
       return false;
